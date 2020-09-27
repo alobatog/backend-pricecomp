@@ -1,24 +1,8 @@
+import {parseDiscount, parsePrice, fetchHtml} from './helpers';
+
 const $ = require("cheerio");
-const axios = require("axios");
 
 var URL = 'https://www.warpig.cl';
-
-function parsePrice(price){
-    price = price.replace('$', '');
-    price = price.replace(/\./g, '');
-    return parseInt(price.trim());
-}
-
-function parseDiscount(discount){
-    discount = discount.replace('$', '');
-    discount = discount.replace(/\-/g, '');
-    return parseFloat(discount.trim()) / 100;
-}
-
-async function fetchHtml(url){
-    const { data } = await axios.get(url);
-    return data;
-}
 
 const gameName = (html) => $('a', html).attr('title');
 
@@ -60,16 +44,11 @@ function getPageInfo(pageHtml, games){
 
 async function warpigScrapper(){
     var html = await fetchHtml(`${URL}/collection/juegos-de-mesa`);
-    const numOfPages = $('div.bs-pagination ul li', html).length;
+    const numOfPages = $('div.bs-pagination ul li', html).length - 1;
     var games = {};
-    for (var i = 1; i < numOfPages; i++){
-        console.log("entreeee ", i);
+    for (var i = 1; i < numOfPages + 1; i++){
         html = await fetchHtml(`${URL}/collection/juegos-de-mesa?page=${i}`);
         games = getPageInfo(html, games);
-    }
-    console.log("sali")
-    for (var key in games){
-        console.log(games[key])
     }
     return games;
 }
