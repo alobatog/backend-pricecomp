@@ -1,5 +1,5 @@
 import app from './app';
-import addProducts from './scrapper/index';
+import addData from './scrapper/index';
 
 const cron = require("node-cron");
 const PORT = 5000;
@@ -8,7 +8,8 @@ const PORT = 5000;
 // cron.schedule("* * */2 * *", () => {
 //     addProducts();
 // });
-addProducts();
+
+//addData();
 
 app.listen(PORT, () => {
     console.log(`Funcionando en port ${PORT}`);

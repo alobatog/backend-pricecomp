@@ -43,12 +43,19 @@ function getPageInfo(pageHtml, games){
 }
 
 async function warpigScrapper(){
-    var html = await fetchHtml(`${URL}/collection/juegos-de-mesa`);
-    const numOfPages = $('div.bs-pagination ul li', html).length - 1;
+    console.log("WARPIG");
     var games = {};
-    for (var i = 1; i < numOfPages + 1; i++){
-        html = await fetchHtml(`${URL}/collection/juegos-de-mesa?page=${i}`);
-        games = getPageInfo(html, games);
+    try{
+        var html = await fetchHtml(`${URL}/collection/juegos-de-mesa`);
+        const numOfPages = $('div.bs-pagination ul li', html).length - 1;
+        for (var i = 1; i < numOfPages + 1; i++){
+            console.log("pagina: ", i)
+            html = await fetchHtml(`${URL}/collection/juegos-de-mesa?page=${i}`);
+            games = getPageInfo(html, games);
+        }   
+        console.log("sali de warpig")
+    } catch(error){
+        console.log(error);
     }
     return games;
 }
