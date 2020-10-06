@@ -7,7 +7,7 @@ API para obtener los precios de juesgos de mesa de warpig.cl y entrejuegos.cl
 * Crear .env con:
     * DB_USERNAME
     * DB_PASSWORD
-* Create database comparison_dev
+* Crear database comparison_dev
 * Run npm install
 * Run npx sequelize db:migrate
 * Run npm run dev
