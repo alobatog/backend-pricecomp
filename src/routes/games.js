@@ -55,7 +55,7 @@ router.get('/', async (req, res) => {
 });
 
 
-// ver si arreglar el json que retorna
+// ver si arreglar el json que retorn
 router.get('/:id', async (req, res) => {
     const { id } = req.params;
     const game = await models.Game.findOne({ where: {id} });

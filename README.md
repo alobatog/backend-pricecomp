@@ -1,6 +1,17 @@
-Create database comparison_dev
-Run npx sequelize db:migrate
+### API Ratas de mesa
 
-To use puppeteer run:    
-    sudo apt-get update
-    sudo apt-get install -y libgbm-dev
+API para obtener los precios de juesgos de mesa de warpig.cl y entrejuegos.cl
+
+### Setup en local:
+
+* Crear .env con:
+    * DB_USERNAME
+    * DB_PASSWORD
+* Create database comparison_dev
+* Run npm install
+* Run npx sequelize db:migrate
+* Run npm run dev
+
+La aplicación estará en el puerto 5000
+
+
